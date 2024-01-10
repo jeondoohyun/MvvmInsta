@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel2"
+            type="com.jdh.mvvminsta.login.InputNumberViewModel" />
     </data>
 
     <RelativeLayout
@@ -33,6 +35,7 @@
 
                 <EditText
                     android:id="@+id/edittext_phonenumber"
+                    android:text="@={viewModel2.inputNumber}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/phone_number" />
@@ -56,6 +59,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/apply"
+                android:onClick="@{() -> viewModel2.savePhoneNumber()}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
