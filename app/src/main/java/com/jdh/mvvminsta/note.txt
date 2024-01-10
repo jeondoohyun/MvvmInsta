@@ -1,0 +1,28 @@
+// 파이어베이스 로그인
+1. build.gradle project 수준에
+
+ buildscript {
+     dependencies {
+         classpath ("com.google.gms:google-services:4.4.0")
+     }
+ }
+
+ 추가 해주기
+
+ build.gradle module 수준에
+
+ plugins {
+     id("com.google.gms.google-services")
+ }
+
+ 추가해주기
+
+ 2. 안드로이드 스튜디오에서 구글 로그인 진행(오른쪽 상단)후에 tools탭 > firebase 클릭
+
+
+
+
+
+
+ sha-1 코드 쓰는 이유
+ 이 프로젝트 코드가 외부로 유출 되었을때 바깥 컴퓨터에서는 해당 기능을 사용이 안되도록(ex google 로그인) 현재 컴퓨터의 sha-1 키를 google 콘솔에 등록한다.

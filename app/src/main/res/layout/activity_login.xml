@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel2"
+            type="com.jdh.mvvminsta.login.LoginViewModel" />
+        <variable
+            name="activity2"
+            type="com.jdh.mvvminsta.login.LoginActivity" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".login.LoginActivity">
+
+        <ImageView
+            android:id="@+id/logo_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/logo_title" />
+
+        <LinearLayout
+            android:id="@+id/edittext_linearlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logo_imageview"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- @{viewModel2.id} 로 쓰면 viewModel2.id를 viweModel에서 실시간 데이터를 받아오기만 할뿐 viewModel에 보내지는 못한다. -->
+                <!-- @={viewModel2.id} 이퀄(=)을 붙여서 쓰면 EditText에서 입력을 받은 값이 viewModel로 보내져 동기화가 된다. -->
+                <EditText
+                    android:id="@+id/edittext_id"
+                    android:text="@={viewModel2.id}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edittext_password"
+                    android:text="@={viewModel2.password}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edittext_linearlayout"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <!-- 뭔가 데이터를 바꾸는 함수는 model 에 만들어 놓는다. -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/email_login_button"
+                android:onClick="@{() -> viewModel2.loginWithSignupEmail()}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="@string/signin_email" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/find_id_password_button"
+                android:onClick="@{() -> activity2.findId()}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="@string/find_id_password" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/facebook_login_button"
+                android:onClick="@{() -> activity2.loginFacebook()}"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/btn_signin_facebook"
+                android:text="@string/signin_facebook"
+                android:textColor="@android:color/white" />
+
+            <!-- onclick view 파라미터 여기서 넘겨줌 -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/google_login_button"
+                android:onClick="@{(view) -> viewModel2.loginGoogle(view)}"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/btn_signin_google"
+                android:text="@string/signin_google"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>
