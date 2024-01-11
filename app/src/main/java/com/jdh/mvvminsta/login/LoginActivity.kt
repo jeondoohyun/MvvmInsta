@@ -18,6 +18,7 @@ import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
+import com.jdh.mvvminsta.MainActivity
 import com.jdh.mvvminsta.R
 import com.jdh.mvvminsta.databinding.ActivityLoginBinding
 import java.security.MessageDigest
@@ -67,6 +68,12 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(Intent(this, FindIdActivity::class.java))     // 얘는 finish()없어도 되는 화면
             }
         }
+
+        loginViewModel.showMainActivity.observe(this) {
+            if (it) {
+                startActivity(Intent(this, MainActivity::class.java))
+            }
+        }
     }
 
     // 구글로그인이 성공하고 결과값 받는 함수. 이 함수는 model에서 구현이 안되기 때문에 Activity에서 사용. 자바의 ActivityResult 오버라이드
@@ -98,6 +105,7 @@ class LoginActivity : AppCompatActivity() {
 //        }
 //    }
 
+    // 페이스북 로그인 시도
     fun loginFacebook() {
         var loginManager = LoginManager.getInstance()
         loginManager.setLoginBehavior(LoginBehavior.WEB_ONLY)

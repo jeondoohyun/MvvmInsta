@@ -4,7 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel2"
+            type="com.jdh.mvvminsta.login.FindIdViewModel" />
+        <variable
+            name="activity2"
+            type="com.jdh.mvvminsta.login.FindIdActivity" />
     </data>
 
     <RelativeLayout
@@ -33,6 +38,7 @@
 
                 <EditText
                     android:id="@+id/edittext_phonenumber"
+                    android:text="@={viewModel2.phoneNumber}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/phone_number" />
@@ -47,6 +53,7 @@
 
                 <EditText
                     android:id="@+id/edittext_email"
+                    android:text="@={viewModel2.id}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/email" />
@@ -63,6 +70,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/find_id_btn"
+                android:onClick="@{() -> viewModel2.findMyId()}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -70,6 +78,7 @@
                 android:text="@string/find_id" />
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/find_password_btn"
+                android:onClick="@{() -> viewModel2.findMyPassword()}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -77,8 +86,9 @@
                 android:text="@string/find_password" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:layout_marginTop="30dp"
                 android:id="@+id/dismiss_btn"
+                android:onClick="@{() -> activity2.finish()}"
+                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"

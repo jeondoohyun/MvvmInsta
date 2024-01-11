@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId = "com.jdh.mvvminsta"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 33      // targetSdk 33 부터는 photos and videos 권한이 사라짐
         versionCode = 1
         versionName = "1.0"
 
@@ -60,6 +60,7 @@ dependencies {
     platform("com.google.firebase:firebase-bom:32.7.0")
     implementation("com.google.firebase:firebase-auth-ktx:22.3.0")
     implementation("com.google.firebase:firebase-firestore-ktx:24.10.0")
+    implementation("com.google.firebase:firebase-storage-ktx:20.3.0")
 
     // google login
     implementation("com.google.android.gms:play-services-auth:20.7.0")
