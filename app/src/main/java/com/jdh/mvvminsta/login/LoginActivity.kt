@@ -48,6 +48,7 @@ class LoginActivity : AppCompatActivity() {
         binding.activity2 = this
         binding.viewModel2 = loginViewModel
         binding.lifecycleOwner = this   // binding과 LoginActivity의 생명주기를 맞춰주기
+
 //        auth = FirebaseAuth.getInstance()
         callbackManager = CallbackManager.Factory.create()
         setObserve()
@@ -74,6 +75,7 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(Intent(this, MainActivity::class.java))
             }
         }
+
     }
 
     // 구글로그인이 성공하고 결과값 받는 함수. 이 함수는 model에서 구현이 안되기 때문에 Activity에서 사용. 자바의 ActivityResult 오버라이드

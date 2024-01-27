@@ -2,6 +2,7 @@ package com.jdh.mvvminsta.login
 
 import android.app.Application
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +10,7 @@ import com.facebook.AccessToken
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
@@ -28,7 +30,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application){
     var showMainActivity: MutableLiveData<Boolean> = MutableLiveData(false)
 
     var auth = FirebaseAuth.getInstance()    // firebase 회원가입 객체(google, facebook 사용)
-    var context = getApplication<Application>().applicationContext
+    var context = getApplication<Application>().applicationContext  // AndroidViewModel() 상속받지 않고 ViewModel() 상속받으면 getApplication() 사용불가.
 
     var googleSignInClient: GoogleSignInClient
 
@@ -38,6 +40,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application){
             .requestEmail()
             .build()
         googleSignInClient = GoogleSignIn.getClient(context, gso)
+
     }
 
     // email 로그인
